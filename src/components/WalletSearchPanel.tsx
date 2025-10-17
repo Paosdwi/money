@@ -29,10 +29,19 @@ export default function WalletSearchPanel() {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    if (!debouncedQuery) return;
-    const topResult = results[0];
+
+    const trimmedQuery = query.trim();
+    if (trimmedQuery.length < MIN_QUERY_LENGTH) {
+      return;
+    }
+
+    const isQuerySynced = trimmedQuery === debouncedQuery;
+    const topResult = isQuerySynced ? results[0] : undefined;
+
     if (topResult) {
       navigate(`/wallet/${topResult.address}`);
+    } else {
+      navigate(`/wallet/${trimmedQuery}`);
     }
   };
 
