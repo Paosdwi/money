@@ -21,8 +21,11 @@
 # 安裝依賴
 pnpm install
 
-# 啟動開發伺服器
+# 啟動前端開發伺服器
 pnpm dev
+
+# 啟動模擬後端（REST + WebSocket）
+pnpm server
 
 # 建置正式版
 pnpm build
@@ -35,6 +38,8 @@ pnpm preview
 
 - `VITE_API_BASE_URL`
 - `VITE_WS_BASE_URL`
+
+後端伺服器會即時呼叫 `https://api1.binance.com` 的公開介面並透過 Binance WebSocket stream 擷取 BTC/USDT、ETH/USDT、BNB/USDT 的行情、深度與 24 小時統計數據，再以統一格式回傳給前端儀表板。
 
 ## 專案結構
 
